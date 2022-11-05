@@ -4,7 +4,9 @@ import { Card } from "react-bootstrap";
 const Product = (props) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <h1>{props.product.name}</h1>
+      <a href={`product/${props.product._id}`}>
+        <Card.Img src={props.product.image} />
+      </a>
     </Card>
   );
 };
