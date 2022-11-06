@@ -7,6 +7,18 @@ const Product = (props) => {
       <a href={`product/${props.product._id}`}>
         <Card.Img src={props.product.image} />
       </a>
+      <Card.Body>
+        <a href={`product/${props.product._id}`}>
+          <Card.Title as="div">
+            <strong>{props.product.name}</strong>
+          </Card.Title>
+        </a>
+        <Card.Text as="div">
+          <div className="my-3">
+            {props.product.rating} from {props.product.numReviews}
+          </div>
+        </Card.Text>
+      </Card.Body>
     </Card>
   );
 };
