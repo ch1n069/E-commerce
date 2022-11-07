@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProductScreen from "./pages/ProductScreen";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Container>
           Welcome
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} exact />
+            <Route path="/product/:id" element={<ProductScreen />} />
           </Routes>
           <Home />
         </Container>
