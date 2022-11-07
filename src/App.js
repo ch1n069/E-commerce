@@ -13,12 +13,12 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          Welcome
+          {/* Welcome */}
           <Routes>
             <Route path="/" element={<Home />} exact />
             <Route path="/product/:id" element={<ProductScreen />} />
           </Routes>
-          <Home />
+          {/* <Home /> */}
         </Container>
       </main>
       <Footer />
