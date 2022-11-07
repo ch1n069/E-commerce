@@ -32,7 +32,7 @@ const Products = [
     category: "Beauty",
     price: "100.34",
     countInStock: "20",
-    rating: "4.5",
+    rating: "2.5",
     numReviews: "12",
   },
   {
@@ -44,7 +44,7 @@ const Products = [
     category: "Electronics",
     price: "100.34",
     countInStock: "20",
-    rating: "4.5",
+    rating: "5",
     numReviews: "12",
   },
   {
@@ -56,7 +56,7 @@ const Products = [
     category: "Beauty",
     price: "100.34",
     countInStock: "20",
-    rating: "4.5",
+    rating: "2.5",
     numReviews: "12",
   },
   {
@@ -68,7 +68,7 @@ const Products = [
     category: "Electronics",
     price: "100.34",
     countInStock: "20",
-    rating: "4.5",
+    rating: "3.5",
     numReviews: "12",
   },
 ];
