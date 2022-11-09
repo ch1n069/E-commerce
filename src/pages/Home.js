@@ -4,6 +4,7 @@ import Product from "../components/Product.js";
 import products from "../Products.js";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/ProductActions";
+import Loader from "../components/Loader.js";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Home = () => {
     <div>
       <h1>Latest Products</h1>
       {loading ? (
-        <h2>loading....</h2>
+        <Loader />
       ) : error ? (
         <h3>{error}</h3>
       ) : (
