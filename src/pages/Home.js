@@ -5,6 +5,7 @@ import products from "../Products.js";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/ProductActions";
 import Loader from "../components/Loader.js";
+import Message from "../components/Message.js";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Home = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <h3>{error}</h3>
+        <Message variant="danger">{error}</Message>
       ) : (
         <Row>
           {products.map((product) => (
