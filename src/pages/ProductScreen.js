@@ -10,7 +10,7 @@ import {
   Card,
 } from "react-bootstrap";
 import products from "../Products";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 
@@ -20,7 +20,9 @@ import Message from "../components/Message";
 // import axios from "axios";
 
 // imports happen above
-const ProductScreen = ({ match }) => {
+
+const ProductScreen = ({ matchers }) => {
+  const navigate = useNavigate();
   //   const params = useParams();
 
   // const [product, setProduct] = useState([]);
@@ -40,6 +42,11 @@ const ProductScreen = ({ match }) => {
     // fetchData();
     dispatch(listProductDetails(id));
   }, [dispatch]);
+
+  const addToCartHandler = () => {
+    console.log(`item: ${id}`);
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   // const product = products.find((p) => p._id === id);
   return (
@@ -103,12 +110,10 @@ const ProductScreen = ({ match }) => {
                         <Form.Control
                           as="select"
                           value={qty}
-                          onchange={(e) => {
+                          onChange={(e) => {
                             setQty(e.target.value);
                           }}
                         >
-                          {}
-
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
@@ -121,6 +126,7 @@ const ProductScreen = ({ match }) => {
                 )}
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     disabled={product.countInStock == 0}
                     className="btn-block"
                     type="button"
