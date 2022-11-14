@@ -21,7 +21,7 @@ import Message from "../components/Message";
 
 // imports happen above
 
-const ProductScreen = ({ matchers }) => {
+const ProductScreen = ({ match }) => {
   const navigate = useNavigate();
   //   const params = useParams();
 
@@ -41,7 +41,7 @@ const ProductScreen = ({ matchers }) => {
     // }
     // fetchData();
     dispatch(listProductDetails(id));
-  }, [dispatch]);
+  }, [dispatch, match]);
 
   const addToCartHandler = () => {
     console.log(`item: ${id}`);
