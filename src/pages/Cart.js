@@ -24,7 +24,6 @@ const Cart = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
 
   useEffect(() => {
     if (productId) {
@@ -32,6 +31,11 @@ const Cart = () => {
     }
   }, [dispatch, productId, qty]);
   console.log(cartItems);
+
+  const removeFromCartHandler = (id) => {
+    console.log("item", id);
+  };
+  console.log("removing item with id of", cartItems);
 
   return (
     <div>
@@ -56,11 +60,15 @@ const Cart = () => {
                     <Col md={2}>price : {item.price} </Col>
                     <Col md={3}>
                       {item.qty}
+
+                      <h2>stock {item.rating} </h2>
                       <Form.Control
                         as="select"
                         value={item.qty}
                         onChange={(e) =>
-                          dispatch(addToCart(item.product, e.target.value))
+                          dispatch(
+                            addToCart(item.product, Number(e.target.value))
+                          )
                         }
                       >
                         {[...Array(item.countInStock).keys()].map((x) => (
@@ -71,7 +79,12 @@ const Cart = () => {
                       </Form.Control>
                     </Col>
                     <Col md={1}>
-                      <Button variant="light">
+                      <Button
+                        variant="light"
+                        onClick={() => {
+                          removeFromCartHandler(item.product);
+                        }}
+                      >
                         <i class="bx bxs-trash-alt"></i>
                       </Button>
                     </Col>
@@ -80,6 +93,23 @@ const Cart = () => {
               ))}
             </ListGroup>
           )}
+        </Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant="flush">
+              <h3>
+                subtotal {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                items
+              </h3>
+              Total price$
+              {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+            </ListGroup>
+            <ListGroup.Item>
+              <Button type="button" className="btn btn-block">
+                Proceed to check out
+              </Button>
+            </ListGroup.Item>
+          </Card>
         </Col>
       </Row>
     </div>
