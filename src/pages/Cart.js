@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
 import {
@@ -17,6 +17,7 @@ const Cart = () => {
   const { id } = useParams();
   const productId = id;
   const location = useLocation();
+  const navigate = useNavigate();
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   console.log("qty :", qty);
 
@@ -34,6 +35,10 @@ const Cart = () => {
 
   const removeFromCartHandler = (id) => {
     console.log("item", id);
+  };
+
+  const checkOutHandler = () => {
+    navigate("/login?redirect=shipping");
   };
   console.log("removing item with id of", cartItems);
 
@@ -105,7 +110,12 @@ const Cart = () => {
               {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
             </ListGroup>
             <ListGroup.Item>
-              <Button type="button" className="btn btn-block">
+              <Button
+                disabled={cartItems.length === 0}
+                type="button"
+                className="btn btn-block"
+                onClick={checkOutHandler}
+              >
                 Proceed to check out
               </Button>
             </ListGroup.Item>
