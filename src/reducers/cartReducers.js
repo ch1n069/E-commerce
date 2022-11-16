@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from "../constants/cartConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
@@ -17,32 +17,13 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       } else {
         return { ...state, cartItems: [...state.cartItems, item] };
       }
-      // const existItem = state.cartItems.find((item) => {
-      //   if (x != null) {
-      //     return x.product === existItem.product ? item : x;
-      //   } else {
-      //     return x;
-      //   }
-      // });
 
-      // if (!existItem) {
-      //   return {
-      //     ...state,
-      //     cartItems: [...state.cartItems, item],
-      //   };
-      // } else {
-      //   return;
-      //   // if item does not exist
-      // }
+    case CART_REMOVE_ITEM:
       return {
-        // ...state,
-        // cartItems: existItem
-        //   ? state.cart.map((item) => item.id === action.payload.id)
-        //     ? { ...state, cartItems: [...state.cartItems, item] }
-        //     : item
-        //   : [...state.cart, { ...item, item }],
+        ...state,
+        cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+        // return state.filter((_, i) => i !== index);
       };
-
     default:
       return state;
   }
