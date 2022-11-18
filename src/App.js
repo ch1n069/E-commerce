@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductScreen from "./pages/ProductScreen";
 import Cart from "./pages/Cart";
 import LoginScreen from "./pages/LoginScreen";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           {/* Welcome */}
           <Routes>
             <Route path="/" element={<Home />} exact />
+            <Route path="/register" element={<Register />} />
+
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
             <Route path="/cart" element={<Cart />} />
