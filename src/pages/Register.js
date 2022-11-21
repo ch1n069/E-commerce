@@ -22,7 +22,6 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   // //////////grab inputs from the form ///////////////////////////////////
   const [name, setName] = useState("");
@@ -30,6 +29,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userRegister = useSelector((state) => state.userRegister);
   const { error, loading, userInfo } = userRegister;
@@ -39,7 +40,7 @@ const Register = () => {
     if (password !== confirmPassword) {
       setMessage("password do not match");
     } else {
-      dispatch(register(email, password));
+      dispatch(register(name, email, password));
 
       console.log("submitted");
     }
